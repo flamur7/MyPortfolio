@@ -1,9 +1,16 @@
-﻿namespace MyPortfolio.Areas.Admin.Models
+﻿using MyPortfolio.Models;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace MyPortfolio.Areas.Admin.Models
 {
     public class Skill
     {
+        [Key]
         public int SkillId { get; set; }
         public string SkillName { get; set; }
 
+
+        public virtual ICollection<PersonalUser> PersonalUsers { get; set; }
     }
 }
