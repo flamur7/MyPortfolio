@@ -1,4 +1,4 @@
-﻿using MyPortfolio.Areas.Admin.Models;
+﻿
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,9 +13,9 @@ namespace MyPortfolio.Models
         public string Email { get; set; }
         public string GitLink { get; set; }
 
-        [Display(Name = "Skills")]
-        public int SkillId { get; set; }
-        [ForeignKey("SkillId")]
-        public virtual Skill Skill { get; set; }
+        //[Display(Name = "Skills")]
+        //public int SkillId { get; set; }
+        //[ForeignKey("SkillId")]
+        ////public virtual Skill Skill { get; set; }
     }
 }

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MyPortfolio.Models.Collaborators>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CollaboratorFullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BackEndTechnology)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FrontEndTechnology)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherTechnology)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatabaseTechnology)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CollaboratorFullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BackEndTechnology.BackEndTechnologyId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FrontEndTechnology.FrontEndTechnologyId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OtherTechnology.OtherTechnologyId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatabaseTechnology.DatabaseTechnologyId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CollaboratorId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CollaboratorId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CollaboratorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

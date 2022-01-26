@@ -1,8 +1,7 @@
-﻿using MyPortfolio.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MyPortfolio.Areas.Admin.Models
+namespace MyPortfolio.Models
 {
     public class Skill
     {
