@@ -25,12 +25,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.FrontEndTechnology)
             </th>
-            <th>
+           @* <th>
                 @Html.DisplayNameFor(model => model.OtherTechnology)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DatabaseTechnology)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -44,21 +44,21 @@
                 @Html.DisplayFor(modelItem => item.ProjectMadeDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BackEndTechnology.BackEndTechnologyId)
+                @Html.DisplayFor(modelItem => item.BackEndTechnology.BackEndTechnologyName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FrontEndTechnology.FrontEndTechnologyId)
+                @Html.DisplayFor(modelItem => item.FrontEndTechnology.FrontEndName)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.OtherTechnology.OtherTechnologyName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OtherTechnology.OtherTechnologyId)
-            </td>
+                @Html.DisplayFor(modelItem => item.DatabaseTechnology.DatabaseTechnologyName)
+            </td>*@
             <td>
-                @Html.DisplayFor(modelItem => item.DatabaseTechnology.DatabaseTechnologyId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProjectMadeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProjectMadeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProjectMadeId">Delete</a>
+                <a asp-action="Edit" class="btn btn-success" asp-route-id="@item.ProjectMadeId">Edit</a> |
+                <a asp-action="Details" class="btn btn-info" asp-route-id="@item.ProjectMadeId">Details</a> |
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.ProjectMadeId">Delete</a>
             </td>
         </tr>
 }

@@ -7,6 +7,8 @@ namespace MyPortfolio.Models
     {
         [Key]
         public int BackEndTechnologyId { get; set; }
+
+        [Display(Name = "Back-End")]
         public string BackEndTechnologyName { get; set; }
 
         public virtual ICollection<ProjectMade> ProjectMades { get; set; }

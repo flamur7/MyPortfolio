@@ -10,8 +10,8 @@ using MyPortfolio.Data;
 namespace MyPortfolio.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220126103637_tabels")]
-    partial class tabels
+    [Migration("20220126154109_tabelLink")]
+    partial class tabelLink
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

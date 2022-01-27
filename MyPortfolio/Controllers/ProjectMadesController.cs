@@ -51,10 +51,10 @@ namespace MyPortfolio.Views
         // GET: ProjectMades/Create
         public IActionResult Create()
         {
-            ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyId");
-            ViewData["DatabaseTechnologyId"] = new SelectList(_context.DatabaseTechnology, "DatabaseTechnologyId", "DatabaseTechnologyId");
-            ViewData["FrontEndTechnologyId"] = new SelectList(_context.FrontEndTechnology, "FrontEndTechnologyId", "FrontEndTechnologyId");
-            ViewData["OtherTechnologyId"] = new SelectList(_context.OtherTechnology, "OtherTechnologyId", "OtherTechnologyId");
+            ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyName");
+            ViewData["DatabaseTechnologyId"] = new SelectList(_context.DatabaseTechnology, "DatabaseTechnologyId", "DatabaseTechnologyName");
+            ViewData["FrontEndTechnologyId"] = new SelectList(_context.FrontEndTechnology, "FrontEndTechnologyId", "FrontEndName");
+            ViewData["OtherTechnologyId"] = new SelectList(_context.OtherTechnology, "OtherTechnologyId", "OtherTechnologyName");
             return View();
         }
 
@@ -71,10 +71,10 @@ namespace MyPortfolio.Views
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyId", projectMade.BackEndTechnologyId);
-            ViewData["DatabaseTechnologyId"] = new SelectList(_context.DatabaseTechnology, "DatabaseTechnologyId", "DatabaseTechnologyId", projectMade.DatabaseTechnologyId);
-            ViewData["FrontEndTechnologyId"] = new SelectList(_context.FrontEndTechnology, "FrontEndTechnologyId", "FrontEndTechnologyId", projectMade.FrontEndTechnologyId);
-            ViewData["OtherTechnologyId"] = new SelectList(_context.OtherTechnology, "OtherTechnologyId", "OtherTechnologyId", projectMade.OtherTechnologyId);
+            ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyName", projectMade.BackEndTechnologyId);
+            ViewData["DatabaseTechnologyId"] = new SelectList(_context.DatabaseTechnology, "DatabaseTechnologyId", "DatabaseTechnologyName", projectMade.DatabaseTechnologyId);
+            ViewData["FrontEndTechnologyId"] = new SelectList(_context.FrontEndTechnology, "FrontEndTechnologyId", "FrontEndName", projectMade.FrontEndTechnologyId);
+            ViewData["OtherTechnologyId"] = new SelectList(_context.OtherTechnology, "OtherTechnologyId", "OtherTechnologyName", projectMade.OtherTechnologyId);
             return View(projectMade);
         }
 
@@ -91,10 +91,10 @@ namespace MyPortfolio.Views
             {
                 return NotFound();
             }
-            ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyId", projectMade.BackEndTechnologyId);
-            ViewData["DatabaseTechnologyId"] = new SelectList(_context.DatabaseTechnology, "DatabaseTechnologyId", "DatabaseTechnologyId", projectMade.DatabaseTechnologyId);
-            ViewData["FrontEndTechnologyId"] = new SelectList(_context.FrontEndTechnology, "FrontEndTechnologyId", "FrontEndTechnologyId", projectMade.FrontEndTechnologyId);
-            ViewData["OtherTechnologyId"] = new SelectList(_context.OtherTechnology, "OtherTechnologyId", "OtherTechnologyId", projectMade.OtherTechnologyId);
+            ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyName", projectMade.BackEndTechnologyId);
+            ViewData["DatabaseTechnologyId"] = new SelectList(_context.DatabaseTechnology, "DatabaseTechnologyId", "DatabaseTechnologyName", projectMade.DatabaseTechnologyId);
+            ViewData["FrontEndTechnologyId"] = new SelectList(_context.FrontEndTechnology, "FrontEndTechnologyId", "FrontEndName", projectMade.FrontEndTechnologyId);
+            ViewData["OtherTechnologyId"] = new SelectList(_context.OtherTechnology, "OtherTechnologyId", "OtherTechnologyName", projectMade.OtherTechnologyId);
             return View(projectMade);
         }
 
@@ -130,10 +130,10 @@ namespace MyPortfolio.Views
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyId", projectMade.BackEndTechnologyId);
-            ViewData["DatabaseTechnologyId"] = new SelectList(_context.DatabaseTechnology, "DatabaseTechnologyId", "DatabaseTechnologyId", projectMade.DatabaseTechnologyId);
-            ViewData["FrontEndTechnologyId"] = new SelectList(_context.FrontEndTechnology, "FrontEndTechnologyId", "FrontEndTechnologyId", projectMade.FrontEndTechnologyId);
-            ViewData["OtherTechnologyId"] = new SelectList(_context.OtherTechnology, "OtherTechnologyId", "OtherTechnologyId", projectMade.OtherTechnologyId);
+            ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyName", projectMade.BackEndTechnologyId);
+            ViewData["DatabaseTechnologyId"] = new SelectList(_context.DatabaseTechnology, "DatabaseTechnologyId", "DatabaseTechnologyName", projectMade.DatabaseTechnologyId);
+            ViewData["FrontEndTechnologyId"] = new SelectList(_context.FrontEndTechnology, "FrontEndTechnologyId", "FrontEndName", projectMade.FrontEndTechnologyId);
+            ViewData["OtherTechnologyId"] = new SelectList(_context.OtherTechnology, "OtherTechnologyId", "OtherTechnologyName", projectMade.OtherTechnologyId);
             return View(projectMade);
         }
 

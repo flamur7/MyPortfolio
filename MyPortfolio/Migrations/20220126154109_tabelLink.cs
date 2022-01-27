@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyPortfolio.Migrations
 {
-    public partial class tabels : Migration
+    public partial class tabelLink : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
