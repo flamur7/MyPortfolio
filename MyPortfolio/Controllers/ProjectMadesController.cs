@@ -19,8 +19,17 @@ namespace MyPortfolio.Views
             _context = context;
         }
 
+
+
         // GET: ProjectMades
         public async Task<IActionResult> Index()
+        {
+            var applicationDbContext = _context.ProjectMade.Include(p => p.BackEndTechnology).Include(p => p.DatabaseTechnology).Include(p => p.FrontEndTechnology).Include(p => p.OtherTechnology);
+            return View(await applicationDbContext.ToListAsync());
+        }
+
+        // GET: ProjectMades
+        public async Task<IActionResult> UserIndex()
         {
             var applicationDbContext = _context.ProjectMade.Include(p => p.BackEndTechnology).Include(p => p.DatabaseTechnology).Include(p => p.FrontEndTechnology).Include(p => p.OtherTechnology);
             return View(await applicationDbContext.ToListAsync());

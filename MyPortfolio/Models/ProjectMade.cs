@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyPortfolio.Models
@@ -37,6 +38,7 @@ namespace MyPortfolio.Models
         [Display(Name = "Database")]
         public virtual DatabaseTechnology DatabaseTechnology { get; set; }
 
-        
+        public virtual ICollection<Rate> Rates { get; set; }
+
     }
 }

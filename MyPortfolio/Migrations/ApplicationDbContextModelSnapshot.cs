@@ -82,6 +82,10 @@ namespace MyPortfolio.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -133,6 +137,8 @@ namespace MyPortfolio.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -269,6 +275,34 @@ namespace MyPortfolio.Migrations
                     b.ToTable("Collaborators");
                 });
 
+            modelBuilder.Entity("MyPortfolio.Models.Contact", b =>
+                {
+                    b.Property<int>("ContactId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ContactFullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactSubject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ContactId");
+
+                    b.ToTable("Contacts");
+                });
+
             modelBuilder.Entity("MyPortfolio.Models.DatabaseTechnology", b =>
                 {
                     b.Property<int>("DatabaseTechnologyId")
@@ -381,6 +415,26 @@ namespace MyPortfolio.Migrations
                     b.ToTable("ProjectMade");
                 });
 
+            modelBuilder.Entity("MyPortfolio.Models.Rate", b =>
+                {
+                    b.Property<int>("RateId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CommentRate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProjectMadeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RateId");
+
+                    b.HasIndex("ProjectMadeId");
+
+                    b.ToTable("Rate");
+                });
+
             modelBuilder.Entity("MyPortfolio.Models.Skill", b =>
                 {
                     b.Property<int>("SkillId")
@@ -394,6 +448,19 @@ namespace MyPortfolio.Migrations
                     b.HasKey("SkillId");
 
                     b.ToTable("Skill");
+                });
+
+            modelBuilder.Entity("MyPortfolio.Models.ApplicationUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -524,6 +591,17 @@ namespace MyPortfolio.Migrations
                     b.Navigation("OtherTechnology");
                 });
 
+            modelBuilder.Entity("MyPortfolio.Models.Rate", b =>
+                {
+                    b.HasOne("MyPortfolio.Models.ProjectMade", "ProjectMade")
+                        .WithMany("Rates")
+                        .HasForeignKey("ProjectMadeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProjectMade");
+                });
+
             modelBuilder.Entity("MyPortfolio.Models.BackEndTechnology", b =>
                 {
                     b.Navigation("Collaboratorss");
@@ -550,6 +628,11 @@ namespace MyPortfolio.Migrations
                     b.Navigation("Collaboratorss");
 
                     b.Navigation("ProjectMades");
+                });
+
+            modelBuilder.Entity("MyPortfolio.Models.ProjectMade", b =>
+                {
+                    b.Navigation("Rates");
                 });
 
             modelBuilder.Entity("MyPortfolio.Models.Skill", b =>

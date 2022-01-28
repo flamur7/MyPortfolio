@@ -23,5 +23,7 @@ namespace MyPortfolio.Data
         public DbSet<MyPortfolio.Models.PersonalUser> PersonalUser { get; set; }
         public DbSet<MyPortfolio.Models.Skill> Skill { get; set; }
         public DbSet<MyPortfolio.Models.Contact> Contacts { get; set; }
+        public DbSet<MyPortfolio.Models.Rate> Rate { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }

@@ -5,11 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<br />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h1>List with Projects</h1>
+<br />
+<br />
+
+<div>
+  <a asp-action="Create" asp-controller="ProjectMades" class="btn btn-info form-control text-white">
+     Add New Project
+  </a>
+</div>
+
+<br />
+
 <table class="table">
     <thead>
         <tr>

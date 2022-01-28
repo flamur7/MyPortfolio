@@ -62,8 +62,8 @@ namespace MyPortfolio
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                name: "Admin",
-                pattern: "{area:exists}/{controller=AdminHome}/{action=Index}/{id?}");
+                name: "UserManager",
+                pattern: "{area:exists}/{controller=User}/{action=Create}/{id?}");
                 endpoints.MapRazorPages();
 
                 endpoints.MapControllerRoute(
