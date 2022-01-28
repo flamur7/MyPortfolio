@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyPortfolio.Data;
 using MyPortfolio.Models;
 
-namespace PMS.Areas.Customer.Controllers
+namespace MyPortfolio.Areas.Customer.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class UserController : Controller
     {
         UserManager<IdentityUser> _userManager;
