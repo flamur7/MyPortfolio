@@ -34,8 +34,8 @@
 <body>
     <header>
         <nav class="navbar navbar-dark text-white navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3" style="background-color:black;">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyPortfolio</a>
+            <div class="container" style="max-width: 1280px">
+                <a class="navbar-brand" asp-area="Admin" asp-controller="ProjectMades" asp-action="UserIndex">MyPortfolio</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -43,8 +43,18 @@
                 <div class="navbar-collapse text-white collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
 
-                        @if (userRole == "Admin")
-                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="Admin" asp-controller="Collaborators" asp-action="CollaboratoresIndex">Collaborators</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="User" asp-controller="Contacts" asp-action="Create">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="User" asp-controller="Rates" asp-action="Index">Rate</a>
+                        </li>
+
+                        @*@if (userRole == "Admin")*@
+                        @*{*@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     Admin
@@ -75,22 +85,15 @@
                                 </div>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="Admin" asp-controller="ProjectMades" asp-action="Index">Project</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Add 
+                                </a><div class="dropdown-menu" style="background-color:black;" aria-labelledby="navbarDropdown">
+                                    <a class="nav-link text-white" asp-area="Admin" asp-controller="ProjectMades" asp-action="Index">Project</a>
+                                    <a class="nav-link text-white" asp-area="Admin" asp-controller="Collaborators" asp-action="Index">Collaborators</a>
+                                </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="Admin" asp-controller="Collaborators" asp-action="Index">Collaborators</a>
-                            </li>
-                        }
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="Admin" asp-controller="ProjectMades" asp-action="UserIndex">Homepage</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="User" asp-controller="Contacts" asp-action="Index">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="User" asp-controller="Rates" asp-action="Index">Rate</a>
-                        </li>
+                        @*}*@
                     </ul>
 
                     <partial name="_LoginPartial" />
@@ -103,7 +106,10 @@
             @RenderBody()
         </main>
     </div>
-
+    <br />
+    <br />
+    <br />
+    <br />
     <footer class="border-top footer bg-black text-white" style="background-color:black;">
         <div class="container">
             &copy; 2022 - MyPortfolio - <b>Flamur Gashi</b>

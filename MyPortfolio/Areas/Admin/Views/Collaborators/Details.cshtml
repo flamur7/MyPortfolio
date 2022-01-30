@@ -8,7 +8,7 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Collaborators</h4>
+<h4>Details</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -18,32 +18,41 @@
             @Html.DisplayFor(model => model.CollaboratorFullName)
         </dd>
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CollaboratorDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CollaboratorDescription)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.BackEndTechnology)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BackEndTechnology.BackEndTechnologyId)
+            @Html.DisplayFor(model => model.BackEndTechnology.BackEndTechnologyName)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.FrontEndTechnology)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FrontEndTechnology.FrontEndTechnologyId)
+            @Html.DisplayFor(model => model.FrontEndTechnology.FrontEndName)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.OtherTechnology)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OtherTechnology.OtherTechnologyId)
+            @Html.DisplayFor(model => model.OtherTechnology.OtherTechnologyName)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DatabaseTechnology)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DatabaseTechnology.DatabaseTechnologyId)
+            @Html.DisplayFor(model => model.DatabaseTechnology.DatabaseTechnologyName)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.CollaboratorId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div class="col-35 btn-group">
+        <div class="col-6 form group text-left p-1">
+            <a asp-action="Index" class="btn btn-secondary">&nbsp;Back&nbsp;</a>
+        </div>
+    </div>
 </div>

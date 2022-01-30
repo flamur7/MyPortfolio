@@ -12,10 +12,12 @@ namespace MyPortfolio.Models
         [Display(Name ="Project Name")]
         public string ProjectMadeName { get; set; }
 
-        [Display(Name = "Project Description")]
+        [Display(Name = "Description")]
         public string ProjectMadeDescription { get; set; }
 
-        
+        [Display(Name = "Project Image")]
+        public string Image { get; set; }
+
         public int BackEndTechnologyId { get; set; }
         [ForeignKey("BackEndTechnologyId")]
         [Display(Name = "Back-End")]

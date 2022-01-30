@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    int intCount = 0;
 }
 
 <br />
@@ -21,6 +22,9 @@
 <table class="table">
     <thead>
         <tr>
+            <td>
+                #
+            </td>
             <th>
                 @Html.DisplayNameFor(model => model.BackEndTechnologyName)
             </th>
@@ -29,14 +33,26 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
+
+        intCount = intCount +1;
         <tr>
             <td>
+                @intCount
+            </td>
+
+            <td> 
                 @Html.DisplayFor(modelItem => item.BackEndTechnologyName)
             </td>
             <td>
-                <a asp-action="Edit" class="btn btn-success" asp-route-id="@item.BackEndTechnologyId">Edit</a> |
-                <a asp-action="Details" class="btn btn-info" asp-route-id="@item.BackEndTechnologyId">Details</a> |
-                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.BackEndTechnologyId">Delete</a>
+                <a asp-action="Edit" class="btn btn-success" style="border: 1px solid black; width: 45px;" asp-route-id="@item.BackEndTechnologyId">
+                    <i class="far fa-edit"></i>
+                </a> |
+                <a asp-action="Details" class="btn btn-info" style="border: 1px solid black; width: 45px;" asp-route-id="@item.BackEndTechnologyId">
+                    <i class="fas fa-list-ul"></i>
+                </a> |
+                <a asp-action="Delete" class="btn btn-danger" style="border: 1px solid black; width: 45px;" asp-route-id="@item.BackEndTechnologyId">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
             </td>
         </tr>
 }

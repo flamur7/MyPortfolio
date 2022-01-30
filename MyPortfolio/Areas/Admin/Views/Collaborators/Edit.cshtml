@@ -5,9 +5,9 @@
 
 }
 
-<h1>Edit</h1>
+<br />
 
-<h4>Collaborators</h4>
+<h4>Edit Name</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -18,6 +18,11 @@
                 <label asp-for="CollaboratorFullName" class="control-label"></label>
                 <input asp-for="CollaboratorFullName" class="form-control" />
                 <span asp-validation-for="CollaboratorFullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CollaboratorDescription" class="control-label"></label>
+                <textarea asp-for="CollaboratorDescription" class="form-control"></textarea>
+                <span asp-validation-for="CollaboratorDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BackEndTechnologyId" class="control-label"></label>
@@ -39,15 +44,16 @@
                 <select asp-for="DatabaseTechnologyId" class="form-control" asp-items="ViewBag.DatabaseTechnologyId"></select>
                 <span asp-validation-for="DatabaseTechnologyId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="col-12 btn-group">
+                <div class="col-6 form group text-right p-2">
+                    <a asp-action="Index" class="btn btn-secondary">&nbsp;Back&nbsp;</a>
+                </div>
+                <div class="col-6 form-group text-left p-2">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                </div>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

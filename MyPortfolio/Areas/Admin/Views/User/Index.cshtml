@@ -2,6 +2,7 @@
 @model IEnumerable<ApplicationUser>
 @{
     ViewData["Title"] = "Index";
+    int intCount = 0;
 }
 
 <br />
@@ -19,6 +20,9 @@
     <table class="table table-striped border">
         <tr class="table-info">
             <th>
+               #
+            </th>
+            <th>
                Name
             </th>
             <th>
@@ -29,18 +33,19 @@
         </tr>
         @foreach (var item in Model)
         {
-    <tr>
-        <td>@item.FirstName @item.LastName</td>
+            intCount = intCount + 1;
+            <tr>
+        <td>@intCount</td><td>@item.FirstName @item.LastName</td>
         <td>@item.UserName</td>
         @if (item.LockoutEnd > DateTime.Now && item.LockoutEnd != null)
         {
             <td>Inactive</td>
             <td>
                 <div class="btn-group">
-                    <a asp-action="Active" class="btn btn-primary" asp-route-id="@item.Id">
+                    <a asp-action="Active" class="btn btn-primary" style="border: 1px solid black" asp-route-id="@item.Id">
                         <i class="far fa-edit"></i>
                     </a>
-                     <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">
+                     <a asp-action="Delete" class="btn btn-danger" style="border: 1px solid black" asp-route-id="@item.Id">
                         <i class="fas fa-trash-alt"></i>
                     </a>
                 </div>

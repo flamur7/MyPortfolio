@@ -2,19 +2,35 @@
 
 @{
     ViewData["Title"] = "Index";
+    int intCount = 0;
 
 }
 
-<h1>Index</h1>
+<br />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h1>List with My Collaborators</h1>
+<br />
+<br />
+
+<div>
+  <a asp-action="Create" asp-controller="Collaborators" class="btn btn-info form-control text-white">
+     Add New Collaborator Member
+  </a>
+</div>
+
+<br />
+
 <table class="table">
     <thead>
         <tr>
             <th>
+                #
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.CollaboratorFullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CollaboratorDescription)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.BackEndTechnology)
@@ -22,39 +38,56 @@
             <th>
                 @Html.DisplayNameFor(model => model.FrontEndTechnology)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.OtherTechnology)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DatabaseTechnology)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+            intCount = intCount + 1;
+            <tr>
+            <td>
+                @intCount
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CollaboratorFullName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BackEndTechnology.BackEndTechnologyId)
+                @Html.DisplayFor(modelItem => item.CollaboratorDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FrontEndTechnology.FrontEndTechnologyId)
+                @Html.DisplayFor(modelItem => item.BackEndTechnology.BackEndTechnologyName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OtherTechnology.OtherTechnologyId)
+                @Html.DisplayFor(modelItem => item.FrontEndTechnology.FrontEndName)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.OtherTechnology.OtherTechnologyName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DatabaseTechnology.DatabaseTechnologyId)
-            </td>
+                @Html.DisplayFor(modelItem => item.DatabaseTechnology.DatabaseTechnologyName)
+            </td>*@
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CollaboratorId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CollaboratorId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CollaboratorId">Delete</a>
+                <a asp-action="Edit" class="btn btn-success" style="border: 1px solid black; width: 45px;" asp-route-id="@item.CollaboratorId">
+                    <i class="far fa-edit"></i>
+                </a> |
+                <a asp-action="Details" class="btn btn-info" style="border: 1px solid black; width: 45px;" asp-route-id="@item.CollaboratorId">
+                    <i class="fas fa-list-ul"></i>
+                </a> |
+                <a asp-action="Delete" class="btn btn-danger" style="border: 1px solid black; width: 45px;" asp-route-id="@item.CollaboratorId">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/back.css" />
+}

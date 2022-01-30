@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -15,13 +18,15 @@ namespace MyPortfolio.Views
     public class ProjectMadesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public ProjectMadesController(ApplicationDbContext context)
+        public ProjectMadesController(ApplicationDbContext context, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
         }
 
-
+          
 
         // GET: ProjectMades
         public async Task<IActionResult> Index()
@@ -75,14 +80,40 @@ namespace MyPortfolio.Views
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProjectMadeId,ProjectMadeName,ProjectMadeDescription,BackEndTechnologyId,FrontEndTechnologyId,OtherTechnologyId,DatabaseTechnologyId")] ProjectMade projectMade)
+        public async Task<IActionResult> Create([Bind("ProjectMadeId,ProjectMadeName,ProjectMadeDescription,Image,BackEndTechnologyId,FrontEndTechnologyId,OtherTechnologyId,DatabaseTechnologyId")] ProjectMade projectMade, IFormFile image)
         {
             if (ModelState.IsValid)
             {
+                var searchProject = _context.ProjectMade.FirstOrDefault(p => p.ProjectMadeId == projectMade.ProjectMadeId);
+                if (searchProject != null)
+                {
+                    ViewBag.message = "This product already exist";
+                    ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyName");
+                    ViewData["DatabaseTechnologyId"] = new SelectList(_context.DatabaseTechnology, "DatabaseTechnologyId", "DatabaseTechnologyName");
+                    ViewData["FrontEndTechnologyId"] = new SelectList(_context.FrontEndTechnology, "FrontEndTechnologyId", "FrontEndName");
+                    ViewData["OtherTechnologyId"] = new SelectList(_context.OtherTechnology, "OtherTechnologyId", "OtherTechnologyName");
+                    return View(projectMade);
+                }
+
+                if (image != null)
+                {
+                    var name = Path.Combine(_hostingEnvironment.WebRootPath + "/Images", Path.GetFileName(image.FileName));
+                    await image.CopyToAsync(new FileStream(name, FileMode.Create));
+                    projectMade.Image = "Images/" + image.FileName;
+                }
+
+                if (image == null)
+                {
+                    projectMade.Image = "Image/noimage.png";
+                }
+                _context.Add(projectMade);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
                 _context.Add(projectMade);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyName", projectMade.BackEndTechnologyId);
             ViewData["DatabaseTechnologyId"] = new SelectList(_context.DatabaseTechnology, "DatabaseTechnologyId", "DatabaseTechnologyName", projectMade.DatabaseTechnologyId);
             ViewData["FrontEndTechnologyId"] = new SelectList(_context.FrontEndTechnology, "FrontEndTechnologyId", "FrontEndName", projectMade.FrontEndTechnologyId);
@@ -116,7 +147,7 @@ namespace MyPortfolio.Views
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProjectMadeId,ProjectMadeName,ProjectMadeDescription,BackEndTechnologyId,FrontEndTechnologyId,OtherTechnologyId,DatabaseTechnologyId")] ProjectMade projectMade)
+        public async Task<IActionResult> Edit(int id, [Bind("ProjectMadeId,ProjectMadeName,ProjectMadeDescription,Image,BackEndTechnologyId,FrontEndTechnologyId,OtherTechnologyId,DatabaseTechnologyId")] ProjectMade projectMade, IFormFile image)
         {
             if (id != projectMade.ProjectMadeId)
             {
@@ -127,6 +158,17 @@ namespace MyPortfolio.Views
             {
                 try
                 {
+                    if (image != null)
+                    {
+                        var name = Path.Combine(_hostingEnvironment.WebRootPath + "/Images", Path.GetFileName(image.FileName));
+                        await image.CopyToAsync(new FileStream(name, FileMode.Create));
+                        projectMade.Image = "Images/" + image.FileName;
+                    }
+
+                    if (image == null)
+                    {
+                        projectMade.Image = "Images/noimage.png";
+                    }
                     _context.Update(projectMade);
                     await _context.SaveChangesAsync();
                 }

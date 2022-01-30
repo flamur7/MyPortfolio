@@ -12,7 +12,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ProjectMadeId" />
             <div class="form-group">
@@ -24,6 +24,11 @@
                 <label asp-for="ProjectMadeDescription" class="control-label"></label>
                 <input asp-for="ProjectMadeDescription" class="form-control" />
                 <span asp-validation-for="ProjectMadeDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" type="file"/>
+                <span asp-validation-for="Image" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BackEndTechnologyId" class="control-label"></label>
@@ -48,6 +53,10 @@
             <hr />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+                <div class="col-4"></div>
+            <div class="col-6">
+            <img src="~/@Model.Image" width="300px" height="290px" style="border-radius: 5px;border: 1px solid #efefef" />
             </div>
         </form>
     </div>

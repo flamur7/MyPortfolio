@@ -9,10 +9,10 @@
 
 <h1>My Projects</h1>
 <hr />
-<div class="row">
+<div class="row" style="background: linear-gradient(115deg, #56d8e4 10%, #9d44c7 90%); border: 1px solid white">
     <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div><br />
             <div class="form-group">
                 <label asp-for="ProjectMadeName" class="control-label"></label>
                 <input asp-for="ProjectMadeName" placeholder="Name Project" required minlength="2" class="form-control" />
@@ -22,6 +22,11 @@
                 <label asp-for="ProjectMadeDescription" class="control-label"></label>
                 <input asp-for="ProjectMadeDescription" placeholder="Short Description" required minlength="2" class="form-control" />
                 <span asp-validation-for="ProjectMadeDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" type="file" accept="image/*" />
+                <span asp-validation-for="Image" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BackEndTechnologyId" class="control-label"></label>
@@ -42,10 +47,10 @@
             <hr />
              <div class="col-12 btn-group">
                     <div class="col-6 form group text-right p-2">
-                        <a asp-action="Index" class="btn btn-secondary">&nbsp;Back&nbsp;</a>
+                        <a asp-action="Index" style="border: 1px solid black" class="btn btn-secondary">&nbsp;Back&nbsp;</a>
                     </div>
                     <div class="col-6 form-group text-left p-2">
-                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <input type="submit" style="border: 1px solid black" value="Create" class="btn btn-primary" />
                     </div>
                 </div>
         </form>

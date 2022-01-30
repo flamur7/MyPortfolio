@@ -28,6 +28,11 @@ namespace MyPortfolio.Views
             var applicationDbContext = _context.Collaborators.Include(c => c.BackEndTechnology).Include(c => c.DatabaseTechnology).Include(c => c.FrontEndTechnology).Include(c => c.OtherTechnology);
             return View(await applicationDbContext.ToListAsync());
         }
+        public async Task<IActionResult> CollaboratoresIndex()
+        {
+            var applicationDbContext = _context.Collaborators.Include(c => c.BackEndTechnology).Include(c => c.DatabaseTechnology).Include(c => c.FrontEndTechnology).Include(c => c.OtherTechnology);
+            return View(await applicationDbContext.ToListAsync());
+        }
 
         // GET: Collaborators/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -54,10 +59,10 @@ namespace MyPortfolio.Views
         // GET: Collaborators/Create
         public IActionResult Create()
         {
-            ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyId");
-            ViewData["DatabaseTechnologyId"] = new SelectList(_context.Set<DatabaseTechnology>(), "DatabaseTechnologyId", "DatabaseTechnologyId");
-            ViewData["FrontEndTechnologyId"] = new SelectList(_context.Set<FrontEndTechnology>(), "FrontEndTechnologyId", "FrontEndTechnologyId");
-            ViewData["OtherTechnologyId"] = new SelectList(_context.Set<OtherTechnology>(), "OtherTechnologyId", "OtherTechnologyId");
+            ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyName");
+            ViewData["DatabaseTechnologyId"] = new SelectList(_context.Set<DatabaseTechnology>(), "DatabaseTechnologyId", "DatabaseTechnologyName");
+            ViewData["FrontEndTechnologyId"] = new SelectList(_context.Set<FrontEndTechnology>(), "FrontEndTechnologyId", "FrontEndName");
+            ViewData["OtherTechnologyId"] = new SelectList(_context.Set<OtherTechnology>(), "OtherTechnologyId", "OtherTechnologyName");
             return View();
         }
 
@@ -66,7 +71,7 @@ namespace MyPortfolio.Views
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CollaboratorId,CollaboratorFullName,BackEndTechnologyId,FrontEndTechnologyId,OtherTechnologyId,DatabaseTechnologyId")] Collaborators collaborators)
+        public async Task<IActionResult> Create([Bind("CollaboratorId,CollaboratorFullName,CollaboratorDescription,BackEndTechnologyId,FrontEndTechnologyId,OtherTechnologyId,DatabaseTechnologyId")] Collaborators collaborators)
         {
             if (ModelState.IsValid)
             {
@@ -74,10 +79,10 @@ namespace MyPortfolio.Views
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyId", collaborators.BackEndTechnologyId);
-            ViewData["DatabaseTechnologyId"] = new SelectList(_context.Set<DatabaseTechnology>(), "DatabaseTechnologyId", "DatabaseTechnologyId", collaborators.DatabaseTechnologyId);
-            ViewData["FrontEndTechnologyId"] = new SelectList(_context.Set<FrontEndTechnology>(), "FrontEndTechnologyId", "FrontEndTechnologyId", collaborators.FrontEndTechnologyId);
-            ViewData["OtherTechnologyId"] = new SelectList(_context.Set<OtherTechnology>(), "OtherTechnologyId", "OtherTechnologyId", collaborators.OtherTechnologyId);
+            ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyName", collaborators.BackEndTechnologyId);
+            ViewData["DatabaseTechnologyId"] = new SelectList(_context.Set<DatabaseTechnology>(), "DatabaseTechnologyId", "DatabaseTechnologyName", collaborators.DatabaseTechnologyId);
+            ViewData["FrontEndTechnologyId"] = new SelectList(_context.Set<FrontEndTechnology>(), "FrontEndTechnologyId", "FrontEndName", collaborators.FrontEndTechnologyId);
+            ViewData["OtherTechnologyId"] = new SelectList(_context.Set<OtherTechnology>(), "OtherTechnologyId", "OtherTechnologyName", collaborators.OtherTechnologyId);
             return View(collaborators);
         }
 
@@ -94,10 +99,10 @@ namespace MyPortfolio.Views
             {
                 return NotFound();
             }
-            ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyId", collaborators.BackEndTechnologyId);
-            ViewData["DatabaseTechnologyId"] = new SelectList(_context.Set<DatabaseTechnology>(), "DatabaseTechnologyId", "DatabaseTechnologyId", collaborators.DatabaseTechnologyId);
-            ViewData["FrontEndTechnologyId"] = new SelectList(_context.Set<FrontEndTechnology>(), "FrontEndTechnologyId", "FrontEndTechnologyId", collaborators.FrontEndTechnologyId);
-            ViewData["OtherTechnologyId"] = new SelectList(_context.Set<OtherTechnology>(), "OtherTechnologyId", "OtherTechnologyId", collaborators.OtherTechnologyId);
+            ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyName", collaborators.BackEndTechnologyId);
+            ViewData["DatabaseTechnologyId"] = new SelectList(_context.Set<DatabaseTechnology>(), "DatabaseTechnologyId", "DatabaseTechnologyName", collaborators.DatabaseTechnologyId);
+            ViewData["FrontEndTechnologyId"] = new SelectList(_context.Set<FrontEndTechnology>(), "FrontEndTechnologyId", "FrontEndName", collaborators.FrontEndTechnologyId);
+            ViewData["OtherTechnologyId"] = new SelectList(_context.Set<OtherTechnology>(), "OtherTechnologyId", "OtherTechnologyName", collaborators.OtherTechnologyId);
             return View(collaborators);
         }
 
@@ -106,7 +111,7 @@ namespace MyPortfolio.Views
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CollaboratorId,CollaboratorFullName,BackEndTechnologyId,FrontEndTechnologyId,OtherTechnologyId,DatabaseTechnologyId")] Collaborators collaborators)
+        public async Task<IActionResult> Edit(int id, [Bind("CollaboratorId,CollaboratorFullName,CollaboratorDescription,BackEndTechnologyId,FrontEndTechnologyId,OtherTechnologyId,DatabaseTechnologyId")] Collaborators collaborators)
         {
             if (id != collaborators.CollaboratorId)
             {
@@ -133,10 +138,10 @@ namespace MyPortfolio.Views
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyId", collaborators.BackEndTechnologyId);
-            ViewData["DatabaseTechnologyId"] = new SelectList(_context.Set<DatabaseTechnology>(), "DatabaseTechnologyId", "DatabaseTechnologyId", collaborators.DatabaseTechnologyId);
-            ViewData["FrontEndTechnologyId"] = new SelectList(_context.Set<FrontEndTechnology>(), "FrontEndTechnologyId", "FrontEndTechnologyId", collaborators.FrontEndTechnologyId);
-            ViewData["OtherTechnologyId"] = new SelectList(_context.Set<OtherTechnology>(), "OtherTechnologyId", "OtherTechnologyId", collaborators.OtherTechnologyId);
+            ViewData["BackEndTechnologyId"] = new SelectList(_context.BackEndTechnology, "BackEndTechnologyId", "BackEndTechnologyName", collaborators.BackEndTechnologyId);
+            ViewData["DatabaseTechnologyId"] = new SelectList(_context.Set<DatabaseTechnology>(), "DatabaseTechnologyId", "DatabaseTechnologyName", collaborators.DatabaseTechnologyId);
+            ViewData["FrontEndTechnologyId"] = new SelectList(_context.Set<FrontEndTechnology>(), "FrontEndTechnologyId", "FrontEndName", collaborators.FrontEndTechnologyId);
+            ViewData["OtherTechnologyId"] = new SelectList(_context.Set<OtherTechnology>(), "OtherTechnologyId", "OtherTechnologyName", collaborators.OtherTechnologyId);
             return View(collaborators);
         }
 

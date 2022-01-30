@@ -104,7 +104,7 @@ namespace MyPortfolio
             {
                 endpoints.MapControllerRoute(
                   name: "areas",
-                  pattern: "{area=User}/{controller=Home}/{action=Index}/{id?}"
+                  pattern: "{area=Admin}/{controller=ProjectMades}/{action=UserIndex}/{id?}"
                 );
                 endpoints.MapRazorPages();
             });

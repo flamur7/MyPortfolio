@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    int intCount = 0;
 
 }
 
@@ -14,39 +15,54 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ContactFullName)
+                #
             </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.ContactFullName)
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.ContactSubject)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Message)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+
+            intCount = intCount + 1;
+            <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ContactFullName)
+                @intCount 
             </td>
+
+            @*<td>
+                @Html.DisplayFor(modelItem => item.ContactFullName)
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.ContactSubject)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Message)
-            </td>
+            </td>*@
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ContactId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ContactId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ContactId">Delete</a>
+                <a asp-action="Edit" class="btn btn-success" style="border: 1px solid black; width: 45px;" asp-route-id="@item.ContactId">
+                    <i class="far fa-edit"></i>
+                </a> |
+                <a asp-action="Details" class="btn btn-info" style="border: 1px solid black; width: 45px;" asp-route-id="@item.ContactId">
+                    <i class="fas fa-list-ul"></i>
+                </a> |
+                <a asp-action="Delete" class="btn btn-danger" style="border: 1px solid black; width: 45px;" asp-route-id="@item.ContactId">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
             </td>
         </tr>
 }
