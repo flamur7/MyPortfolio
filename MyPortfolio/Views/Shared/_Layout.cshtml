@@ -34,7 +34,7 @@
 <body>
     <header>
         <nav class="navbar navbar-dark text-white navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3" style="background-color:black;">
-            <div class="container" style="max-width: 1280px">
+            <div class="container" @*style="max-width: 1280px"*@>
                 <a class="navbar-brand" asp-area="Admin" asp-controller="ProjectMades" asp-action="UserIndex">MyPortfolio</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -50,20 +50,25 @@
                             <a class="nav-link text-white" asp-area="User" asp-controller="Contacts" asp-action="Create">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="User" asp-controller="Rates" asp-action="Index">Rate</a>
+                            <a class="nav-link text-white" asp-area="User" asp-controller="Home" asp-action="Index">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="User" asp-controller="Rates" asp-action="Create">Rate</a>
                         </li>
 
-                        @*@if (userRole == "Admin")*@
-                        @*{*@
+                        @if (userRole == "Admin")
+                        {
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     Admin
                                 </a><div class="dropdown-menu" style="background-color:black;" aria-labelledby="navbarDropdown">
+                                    <a class="nav-link text-white" asp-area="Admin" asp-controller="ProjectMades" asp-action="Index">Project</a>
+                                    <a class="nav-link text-white" asp-area="Admin" asp-controller="Collaborators" asp-action="Index">Collaborators</a>
+                                    <a class="nav-link text-white" asp-area="User" asp-controller="Contacts" asp-action="Index">ContactView</a>
                                     <a class="nav-link text-white" asp-area="Admin" asp-controller="BackEndTechnologies" asp-action="Index">BackEnd</a>
                                     <a class="nav-link text-white" asp-area="Admin" asp-controller="FrontEndTechnologies" asp-action="Index">FrontEnd</a>
                                     <a class="nav-link text-white" asp-area="Admin" asp-controller="DatabaseTechnologies" asp-action="Index">Database</a>
                                     <a class="nav-link text-white" asp-area="Admin" asp-controller="OtherTechnologies" asp-action="Index">Others</a>
-                                    <a class="nav-link text-white" asp-area="Admin" asp-controller="Skills" asp-action="Index">Skills</a>
                                 </div>
                             </li>
 
@@ -73,27 +78,11 @@
                                 </a><div class="dropdown-menu" style="background-color:black;" aria-labelledby="navbarDropdown">
                                     <a class="nav-link text-white" asp-area="Admin" asp-controller="User" asp-action="Index">User list</a>
                                     <a class="nav-link text-white" asp-area="Admin" asp-controller="User" asp-action="Create">Create User</a>
-                                </div>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Roles
-                                </a><div class="dropdown-menu" style="background-color:black;" aria-labelledby="navbarDropdown">
                                     <a class="nav-link text-white" asp-area="Admin" asp-controller="Role" asp-action="Index">Roles</a>
                                     <a class="nav-link text-white" asp-area="Admin" asp-controller="Role" asp-action="Assign">Assign Role</a>
                                 </div>
                             </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Add 
-                                </a><div class="dropdown-menu" style="background-color:black;" aria-labelledby="navbarDropdown">
-                                    <a class="nav-link text-white" asp-area="Admin" asp-controller="ProjectMades" asp-action="Index">Project</a>
-                                    <a class="nav-link text-white" asp-area="Admin" asp-controller="Collaborators" asp-action="Index">Collaborators</a>
-                                </div>
-                            </li>
-                        @*}*@
+                        }
                     </ul>
 
                     <partial name="_LoginPartial" />

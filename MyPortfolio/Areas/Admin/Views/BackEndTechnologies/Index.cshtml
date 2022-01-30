@@ -12,19 +12,19 @@
 <br />
 
 <div>
-  <a asp-action="Create" asp-controller="BackendTechnologies" class="btn btn-info form-control text-white">
-     Add New BackEnd-Technology
+  <a asp-action="Create" asp-controller="BackendTechnologies" style="border: 1px solid black" class="btn btn-info form-control text-white">
+     <b>Add New BackEnd-Technology</b>
   </a>
 </div>
 
 <br />
 
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
         <tr>
-            <td>
+            <th>
                 #
-            </td>
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.BackEndTechnologyName)
             </th>

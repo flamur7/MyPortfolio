@@ -8,6 +8,7 @@ namespace MyPortfolio.Models
         [Key]
         public int DatabaseTechnologyId { get; set; }
 
+        [Required]
         [Display(Name = "Database        ")]
         public string DatabaseTechnologyName { get; set; }
 

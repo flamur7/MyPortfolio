@@ -7,6 +7,8 @@ namespace MyPortfolio.Models
     {
         [Key]
         public int OtherTechnologyId { get; set; }
+
+        [Required]
         [Display(Name ="Others")]
         public string OtherTechnologyName { get; set; }
 

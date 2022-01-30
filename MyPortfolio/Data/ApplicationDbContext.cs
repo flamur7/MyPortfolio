@@ -20,8 +20,6 @@ namespace MyPortfolio.Data
         public DbSet<MyPortfolio.Models.FrontEndTechnology> FrontEndTechnology { get; set; }
         public DbSet<MyPortfolio.Models.OtherTechnology> OtherTechnology { get; set; }
         public DbSet<MyPortfolio.Models.ProjectMade> ProjectMade { get; set; }
-        public DbSet<MyPortfolio.Models.PersonalUser> PersonalUser { get; set; }
-        public DbSet<MyPortfolio.Models.Skill> Skill { get; set; }
         public DbSet<MyPortfolio.Models.Contact> Contacts { get; set; }
         public DbSet<MyPortfolio.Models.Rate> Rate { get; set; }
         public DbSet<MyPortfolio.Models.ApplicationUser> ApplicationUsers { get; set; }

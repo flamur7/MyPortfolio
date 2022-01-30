@@ -8,6 +8,7 @@ namespace MyPortfolio.Models
         [Key]
         public int BackEndTechnologyId { get; set; }
 
+        [Required]
         [Display(Name = "Back-End")]
         public string BackEndTechnologyName { get; set; }
 

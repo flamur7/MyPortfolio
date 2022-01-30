@@ -10,7 +10,7 @@
         <h2 class="text-info">Roles</h2>
     </div>
     <div class="col-6 text-right">
-        <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; New Role</a>
+        <a asp-action="Create" class="btn btn-info" style="border: 1px solid black"><i class="fas fa-plus"></i>&nbsp; New Role</a>
     </div>
 </div>
 <br />
@@ -29,7 +29,7 @@
                 <td>@item.Name</td>                
                 <td style="width: 150px">
                     <div class="btn-group">
-                        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">
+                        <a asp-action="Edit" class="btn btn-primary" style="border: 1px solid black" asp-route-id="@item.Id">
                             <i class="far fa-edit"></i>
                         </a>
                         @*<a asp-action="Details" class="btn btn-success" asp-route-id="@item.Id"><i class="fas fa-list-ul"></i></a>*@

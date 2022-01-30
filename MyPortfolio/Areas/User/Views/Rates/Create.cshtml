@@ -4,11 +4,11 @@
     ViewData["Title"] = "Create";
 
 }
+<br />
 
-<h1>Create</h1>
-
-<h4>Rate</h4>
+<h1 style="text-align:center;">Rate Projects</h1>
 <hr />
+<br />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="CommentRate" class="control-label"></label>
-                <input asp-for="CommentRate" class="form-control" />
+                <textarea asp-for="CommentRate" style="border: 1px solid black" rows="8" cols="80" required placeholder="Write your message" class="form-control"></textarea>
                 <span asp-validation-for="CommentRate" class="text-danger"></span>
             </div>
 
